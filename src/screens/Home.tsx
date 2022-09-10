@@ -13,14 +13,14 @@ export const Home = () => {
       <StatusBar barStyle="dark-content" />
       <Header />
       <SafeAreaView>
-        <ScrollView
+        <ScrollView style={{height: '70%', backgroundColor: '#d4edff'}}
           ref={ref => (scrollViewRef.current = ref)}
           contentInsetAdjustmentBehavior="automatic">
-          <AccountProvider>
-            <ConnectionProvider>
+          {/* <AccountProvider>
+            <ConnectionProvider> */}
               <Wallet />
-            </ConnectionProvider>
-          </AccountProvider>
+            {/* </ConnectionProvider>
+          </AccountProvider> */}
         </ScrollView>
       </SafeAreaView>
     </>
