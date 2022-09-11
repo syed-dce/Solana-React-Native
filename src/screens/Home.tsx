@@ -1,9 +1,9 @@
 import React, {useRef, useEffect} from 'react';
-import {SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {StyleSheet, SafeAreaView, ScrollView, StatusBar} from 'react-native';
 
 import {Header} from '../components';
 import {AccountProvider, ConnectionProvider} from '../providers';
-import {Wallet} from '../screens';
+import {MyAccount} from '../screens';
 
 export const Home = () => {
   const scrollViewRef = useRef<null | ScrollView>(null);
@@ -13,14 +13,12 @@ export const Home = () => {
       <StatusBar barStyle="dark-content" />
       <Header />
       <SafeAreaView>
-        <ScrollView style={{height: '70%', backgroundColor: '#d4edff'}}
+        <ScrollView style={ styles.scrollView }
           ref={ref => (scrollViewRef.current = ref)}
           contentInsetAdjustmentBehavior="automatic">
-          {/* <AccountProvider>
-            <ConnectionProvider> */}
-              <Wallet />
-            {/* </ConnectionProvider>
-          </AccountProvider> */}
+
+              <MyAccount />
+
         </ScrollView>
       </SafeAreaView>
     </>
@@ -28,3 +26,10 @@ export const Home = () => {
 };
 
 export default Home;
+
+const styles = StyleSheet.create({
+    scrollView: {
+        height: '70%',
+        backgroundColor: '#d4edff'
+    }
+})

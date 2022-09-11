@@ -1,13 +1,14 @@
 import React, {useRef, useEffect} from 'react';
-import {SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import {Header} from './components';
 import {AccountProvider, ConnectionProvider} from './providers';
-import {Wallet} from './screens';
-import Home from './screens/Home'
 
+import Home from './screens/Home'
 import { NavigationContainer , DefaultTheme} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +34,17 @@ export const App = () => {
                                         }}
                     
               >
-                  <Tab.Screen name="Network" component={Home} />
+                  <Tab.Screen name="Select Network" component={Home} options={{
+                    tabBarIcon: ( ({focused}) => (
+                      <Icon name="chain" size={25} color= {focused === true ? "#cffff6": "white"} />
+                    ) )
+                  }} />
+
+                  <Tab.Screen name="Add Blog Post" component={Home} options={{
+                    tabBarIcon: ( ({focused}) => (
+                      <Icon name="edit" size={25} color= {focused === true ? "#cffff6": "white"} />
+                    ) )
+                  }} />
 
               </Tab.Navigator>
               </NavigationContainer>

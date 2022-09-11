@@ -4,7 +4,7 @@ import {Button, Text, View} from 'react-native';
 import {AccountSelect, Balance, NetworkSelect, Section} from '../components';
 import {useAccounts, useConnections} from '../providers';
 
-export const Wallet = () => {
+export const MyAccount = () => {
   const {selectedAccount} = useAccounts();
   const {connection, selectedNetwork} = useConnections();
 
