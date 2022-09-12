@@ -46,6 +46,13 @@ export const App = () => {
                     ) )
                   }} />
 
+                  <Tab.Screen name="View blogs" component={Home} options={{
+                    tabBarIcon: ( ({focused}) => (
+                      <Icon name="align-left" size={25} color= {focused === true ? "#cffff6": "white"} />
+                    ) )
+                  }} />
+
+
               </Tab.Navigator>
               </NavigationContainer>
             </ConnectionProvider>
