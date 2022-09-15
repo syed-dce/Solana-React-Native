@@ -1,5 +1,5 @@
 import React, {useRef, useEffect} from 'react';
-import {StyleSheet, SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {StyleSheet, SafeAreaView, ScrollView, StatusBar, ImageBackground, View} from 'react-native';
 
 import {Header} from '../components';
 import {AccountProvider, ConnectionProvider} from '../providers';
@@ -20,6 +20,7 @@ export const Home = () => {
               <MyAccount />
 
         </ScrollView>
+
       </SafeAreaView>
     </>
   );
@@ -29,7 +30,7 @@ export default Home;
 
 const styles = StyleSheet.create({
     scrollView: {
-        height: '70%',
+        height: '100%',
         backgroundColor: '#d4edff'
     }
 })

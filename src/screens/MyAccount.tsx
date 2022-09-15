@@ -1,6 +1,6 @@
 import {LAMPORTS_PER_SOL} from '@solana/web3.js';
 import React, {useEffect, useState} from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {AccountSelect, Balance, NetworkSelect, Section} from '../components';
 import {useAccounts, useConnections} from '../providers';
 
@@ -21,6 +21,7 @@ export const MyAccount = () => {
   };
 
   const getAirdrop = () => {
+
     if (!connection || !selectedAccount) return;
     connection
       .requestAirdrop(selectedAccount.publicKey, 2 * LAMPORTS_PER_SOL)
@@ -48,13 +49,34 @@ export const MyAccount = () => {
               <Text>Fetching balance.</Text>
             )}
           </Section>
-          <Section title="Actions">
-            <Button title="Refresh Balance" onPress={getBalance} />
-            <Button
+          <Section title="">
+
+          <View   style={styles.buttonContainer}>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={getBalance}
+              >
+                  <Text style={{color: 'white' }}>Refresh Balance</Text>
+            </TouchableOpacity>
+            </View>
+
+            { selectedNetwork?.endpoint === 'mainnet-beta' ? <></> :
+            <View   style={styles.buttonContainer}>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={getAirdrop}
+              >
+                  <Text style={{color: 'white' }}>Airdrop</Text>
+            </TouchableOpacity>
+            </View>
+            }
+
+            {/* <Button title="Refresh Balance" onPress={getBalance} /> */}
+            {/* <Button
               disabled={selectedNetwork?.endpoint === 'mainnet-beta'}
               title="Airdrop"
               onPress={getAirdrop}
-            />
+            /> */}
           </Section>
         </View>
       ) : (
@@ -63,3 +85,15 @@ export const MyAccount = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    margin: 10,
+    padding: 4
+  },
+  button: {
+    backgroundColor: '#17002b',
+    padding: 10,
+    borderRadius: 15,
+  },
+})
