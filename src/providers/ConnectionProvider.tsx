@@ -20,6 +20,8 @@ export interface ConnectionProviderContext {
   networks: Network[];
   selectedNetwork?: Network;
   selectNetwork: (network: Network) => void;
+  walletBalance?: any;
+  setWalletBalance?: any;
 }
 
 const ConnectionsContext = React.createContext<ConnectionProviderContext>({
@@ -34,6 +36,8 @@ function ConnectionProvider(props: {children: ReactNode}) {
   const [networkVersion, setNetworkVersion] = useState<any>();
 
   const [connection, setConnection] = useState<Connection | null>();
+
+  const [walletBalance, setWalletBalance] = useState<any>(0);
 
   useEffect(() => {
     if (!connection && selectedNetwork) {
@@ -63,6 +67,8 @@ function ConnectionProvider(props: {children: ReactNode}) {
     networks,
     selectedNetwork,
     selectNetwork,
+    walletBalance,
+    setWalletBalance
   };
   return (
     <ConnectionsContext.Provider value={value}>

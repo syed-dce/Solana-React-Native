@@ -6,7 +6,7 @@ import {useAccounts, useConnections} from '../providers';
 
 export const MyAccount = () => {
   const {selectedAccount} = useAccounts();
-  const {connection, selectedNetwork} = useConnections();
+  const {connection, selectedNetwork, setWalletBalance} = useConnections();
 
   const [balance, setBalance] = useState<any>();
 
@@ -16,19 +16,25 @@ export const MyAccount = () => {
     setBalance(null);
     connection
       .getBalance(selectedAccount.publicKey)
-      .then(res => setBalance(String(res / LAMPORTS_PER_SOL)))
+      .then(res => {
+                      setBalance(String(res / LAMPORTS_PER_SOL))
+                      setWalletBalance(String(res / LAMPORTS_PER_SOL));
+                    })
       .catch(err => console.log(err));
   };
 
   const getAirdrop = () => {
 
+    let amt = 2;
+
     if (!connection || !selectedAccount) return;
     connection
-      .requestAirdrop(selectedAccount.publicKey, 2 * LAMPORTS_PER_SOL)
+      .requestAirdrop(selectedAccount.publicKey, amt * LAMPORTS_PER_SOL)
       .then(res => {
         console.log('res', res);
       })
       .catch(err => console.log(err));
+
   };
 
   useEffect(() => {
